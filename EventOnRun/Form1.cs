@@ -11,35 +11,41 @@ using System.Windows.Forms;
 namespace EventOnRun
 {
 
-    //delegate void (string Data);
+   public delegate void MyDataSender(string data);
 
 
     public partial class Form1 : Form
     {
 
-        //---------------------------------------------------------------------------------------------------------------------------------------------//
-        /// <summary>
-        /// 
-        /// </summary>
-        /// 
+   //---------------------------------------------------------------------------------------------------------------------------------------------//
+       
 
         public Form1()
         {
             InitializeComponent(); 
         }
 
-       
-
-        private void Form_DataSender(string data)
-        {
-            this.textBox1.Text = data;
-        }
+  //---------------------------------------------------------------------------------------------------------------------------------------//
 
         private void Action_Click(object sender, EventArgs e)
         {
             var form = new PW(textBox1.Text);
-           // form.DataSender += Form_DataSender;
+            form.DataSender += Form_DataSender;
             form.ShowDialog();
         }
+
+  //---------------------------------------------------------------------------------------------------------------------------------------//
+
+        private void Form_DataSender(string data)
+        {
+            this.label1.Text = data;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-}//----------------------------------------------------------------------------- end of file ------------------------------------------------------------//
+}
+
+ //----------------------------------------------------------------------------- end of file ------------------------------------------------------------//
